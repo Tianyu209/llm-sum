@@ -4,15 +4,17 @@ import json
 import yaml
 from pathlib import Path
 from datetime import datetime
-
+import transformers
+# import tokenizer
 # Python installed module
 import tiktoken
 from dotenv import load_dotenv
 
 # Python user defined module
-from cod  import COD
-from map_reduce import MapReduce
+from cod_llama3  import COD
+from map_reduce_llama3 import MapReduce
 from kmean import ClusterBasedSummary
+
 # Load the .env file where the openAI token is set
 
 # env_found = load_dotenv("/workspace/.env")
@@ -63,7 +65,7 @@ def validate_configs(config_dict):
 
     
 def main():
-    config_file_name = "config.yaml"
+    config_file_name = "config_llama3.yaml"
     unique_id = datetime.strftime(datetime.now(), "%d%m%y%H%M%S")
     
     # Load the config file
@@ -76,7 +78,7 @@ def main():
         return
         
     # Identify the summary type, short, medium or long form text summarization
-    tiktoken_encoding = tiktoken.encoding_for_model('gpt-3.5-turbo')
+    tiktoken_encoding = tiktoken.get_encoding("cl100k_base")
     input_file_name = config_dict["io_config"]["input_file"]
     input_file_name_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "input", input_file_name)
     

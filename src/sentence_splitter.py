@@ -5,7 +5,6 @@ from tiktoken import encoding_for_model
 from spacy.lang.en import English
 from langchain_core.documents import Document
 
-
 class SentencizerSplitter(object):
     def __init__(self, config_dict):
         self.total_tokens = config_dict["embedding"]["total_tokens"]

@@ -1,6 +1,7 @@
 input_file_valid_extn:
 - .txt
 llm_token_mapping:
+  llama3-8b-8192: 8192
   gpt-3.5-turbo: 4096
   gpt-3.5-turbo-0613: 4096
   gpt-3.5-turbo-16k: 16384

@@ -6,7 +6,7 @@ import traceback
 # Python installed module
 
 
-from langchain.chat_models import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain.callbacks import get_openai_callback
 from langchain.schema import HumanMessage, SystemMessage
 
@@ -18,15 +18,14 @@ class COD(object):
     '''This class implements the Chain-Of-Density summarization'''
     
     def __init__(self, config_dict):
-        self.chat_4_llm = ChatOpenAI(
-                                     model=config_dict["cod"]["model_name"],
+        self.chat_4_llm = ChatGroq(model=config_dict["cod"]["model_name"],
                                    temperature=config_dict["cod"]["temperature"],
                                    max_tokens=config_dict["cod"]["max_tokens"],
                                    model_kwargs={"top_p": config_dict["cod"]["top_p"],
                                                  "presence_penalty": config_dict["cod"]["presence_penalty"],
                                                  "frequency_penalty": config_dict["cod"]["frequency_penalty"]})
         
-        self.chat_turbo_llm = ChatOpenAI(model=config_dict["kw_extract"]["model_name"],
+        self.chat_turbo_llm = ChatGroq(model=config_dict["kw_extract"]["model_name"],
                                    temperature=config_dict["kw_extract"]["temperature"],
                                    max_tokens=config_dict["kw_extract"]["max_tokens"],
                                    model_kwargs={"top_p": config_dict["kw_extract"]["top_p"],
